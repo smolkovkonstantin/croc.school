@@ -1,8 +1,10 @@
 package ru.croc.task3;
 
+import ru.croc.task3.items.MyTriangle;
+import ru.croc.task3.items.Point;
+
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Task3 {
@@ -23,11 +25,16 @@ public class Task3 {
 
         MyTriangle triangle = new MyTriangle(first, second, third);
 
-        DecimalFormat df = new DecimalFormat("#.####"); // выбираю точность округления
-        df.setRoundingMode(RoundingMode.HALF_EVEN); // округляю по математическим правилам: 0.[5-9] -> 1; 0.[1-4] -> 0.0
+        if (triangle.isReal()) {
 
-        System.out.println("Площадь треугольника: " + df.format(triangle.square())); // выводит с ","
-        // System.out.println(df.format(triangle.square()).replace(',', '.')); // выводит с "."
+            DecimalFormat df = new DecimalFormat("#.####"); // выбираю точность округления
+            df.setRoundingMode(RoundingMode.HALF_EVEN); // округляю по математическим правилам: 0.[5-9] -> 1; 0.[1-4] -> 0.0
 
+            System.out.println("The area of the triangle: " + df.format(triangle.square())); // выводит с ","
+            // System.out.println(df.format(triangle.square()).replace(',', '.')); // выводит с "."
+        }
+        else{
+            System.out.println("Invalid triangle");
+        }
     }
 }

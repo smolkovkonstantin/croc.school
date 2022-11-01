@@ -1,4 +1,4 @@
-package ru.croc.task3;
+package ru.croc.task3.items;
 
 public class Point {
     private double x;
