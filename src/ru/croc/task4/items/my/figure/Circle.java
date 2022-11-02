@@ -1,8 +1,10 @@
-package ru.croc.task4.items;
+package ru.croc.task4.items.my.figure;
 
 import ru.croc.task3.items.Point;
+import ru.croc.task4.items.Annotation;
+import ru.croc.task4.items.Movable;
 
-public class Circle extends Annotation {
+public class Circle implements Annotation, Movable {
 
     private final Point centre;
     private final double radius;
@@ -17,18 +19,25 @@ public class Circle extends Annotation {
 
     @Override
     public String toString() {
-        return String.format("Circle (%s, %s), %s: %s\n", centre.getX(), centre.getY(), radius, signature);
+        return String.format("Circle (%s, %s), %s: %s", centre.getX(), centre.getY(), radius, signature);
     }
 
-    public Point getCentre() {
-        return centre;
+    public Point[] getPoints() {
+        return new Point[]{centre};
     }
 
     public double getRadius() {
         return radius;
     }
 
+    @Override
     public String getSignature() {
         return signature;
+    }
+
+    @Override
+    public void move(int dx, int dy) {
+        centre.setX(centre.getX() + dx);
+        centre.setY(centre.getY() + dy);
     }
 }
