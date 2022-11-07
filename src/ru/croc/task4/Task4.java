@@ -2,20 +2,21 @@ package ru.croc.task4;
 
 import ru.croc.task3.items.Point;
 import ru.croc.task4.items.*;
-import ru.croc.task4.items.my.figure.Circle;
-import ru.croc.task4.items.my.figure.Figure;
-import ru.croc.task4.items.my.figure.Rectangle;
+import ru.croc.task4.items.same.figure.Circle;
+import ru.croc.task4.items.same.Figure;
+import ru.croc.task4.items.same.figure.Rectangle;
 
 public class Task4 {
     public static void main(String[] args) {
-        AnnotatedImage figures = new AnnotatedImage("Some Path",
-                new Circle(new Point(10, 10), 1, "pancake"),
-                new Rectangle(new Point(0, 0), new Point(7, 7), "phone"),
-                new Figure("polygonal", new Point(0, 0), new Point(0, 5),
-                        new Point(3, 5), new Point(5, 0)));
+        Figure circle = new Circle(new Point(100, 100), 25);
+        Figure rectangle = new Rectangle(new Point(10, 10), new Point(20, 20));
 
-        for (var figure: figures.getAnnotations()){
-            System.out.println(figure);
+        AnnotatedImage annotatedImage = new AnnotatedImage("Same path",
+                new Annotation(circle, "pizza"),
+                new Annotation(rectangle, "phone"));
+
+        for (Annotation annotation : annotatedImage.getAnnotations()) {
+            System.out.println(annotation);
         }
     }
 }
