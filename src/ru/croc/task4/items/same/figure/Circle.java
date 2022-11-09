@@ -15,10 +15,8 @@ public class Circle extends Figure {
         this.centre = centre;
         this.radius = radius;
 
-        try {
+        {
             isReal();
-        } catch (InvalidFigure e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -49,5 +47,10 @@ public class Circle extends Figure {
 
     public double getRadius() {
         return radius;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s, %s: ", NAME, centre, radius);
     }
 }

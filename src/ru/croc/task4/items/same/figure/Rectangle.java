@@ -16,10 +16,8 @@ public class Rectangle extends Figure {
         this.first = first;
         this.second = second;
 
-        try {
+        {
             isReal();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -57,4 +55,8 @@ public class Rectangle extends Figure {
         return second;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s %s, %s: ", NAME, first, second);
+    }
 }

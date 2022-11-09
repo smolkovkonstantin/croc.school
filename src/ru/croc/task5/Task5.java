@@ -37,8 +37,5 @@ public class Task5 {
         System.out.println(annotatedImage.findByPoint(third));
         System.out.println(annotatedImage.findByPoint(fourth));
         System.out.println(annotatedImage.findByPoint(-1, 15));
-
-
-
     }
 }
