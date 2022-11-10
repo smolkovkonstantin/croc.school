@@ -7,7 +7,7 @@ public class DeleterComment {
 
     public static final Pattern START = Pattern.compile("/\\*");
     public static final Pattern END = Pattern.compile("\\*/");
-    public static final Pattern DOUBLESLESH = Pattern.compile("//");
+    public static final Pattern DOUBLE_SLASH = Pattern.compile("//");
 
     private DeleterComment() {
     }
@@ -38,7 +38,7 @@ public class DeleterComment {
     }
 
     public static String deleteSimpleComment(String str) {
-        Matcher matcher = DOUBLESLESH.matcher(str);
+        Matcher matcher = DOUBLE_SLASH.matcher(str);
         if (matcher.find()) {
             return str.substring(0, matcher.start());
         }
