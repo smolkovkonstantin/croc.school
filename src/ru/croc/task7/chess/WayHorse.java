@@ -20,13 +20,12 @@ public class WayHorse {
         this.sequence = ChessPosition.setOfSequence(positions);
     }
 
-    public boolean isRightWay() throws IllegalMoveException {
+    public void isRightWay() throws IllegalMoveException {
         for (int i = 1; i < sequence.length; i++) {
             if (!DELTA_MOVE.equals(sequence[i].compare(sequence[i - 1]))) {
                 throw new IllegalMoveException(sequence[i - 1], sequence[i]);
             }
         }
-        return true;
     }
 
     public ChessPosition[] getSequence() {

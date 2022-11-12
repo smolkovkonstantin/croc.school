@@ -60,9 +60,8 @@ public class ChessPosition {
 
     @Override
     public String toString() {
-        return String.format("%s", position);
+        return position;
     }
-
     public String getPosition() {
         return position;
     }
