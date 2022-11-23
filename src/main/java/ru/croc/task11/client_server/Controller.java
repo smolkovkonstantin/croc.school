@@ -19,13 +19,15 @@ public class Controller implements Runnable {
 
     @Override
     public void run() {
-
         try {
             List<DataOutputStream> outs = new ArrayList<>();
 
-            for (Socket anotherClient : sockets){
-                outs.add(new DataOutputStream(anotherClient.getOutputStream()));
+            for (Socket anotherClient : sockets) {
+                if (anotherClient.getPort() != client.getPort() && !anotherClient.isClosed()) {
+                    outs.add(new DataOutputStream(anotherClient.getOutputStream()));
+                }
             }
+            System.out.println(sockets);
 
             DataInputStream in = new DataInputStream(client.getInputStream());
 
@@ -43,19 +45,20 @@ public class Controller implements Runnable {
                     break;
                 }
 
-                // отправляем сообщения другим клиентам
-                for (DataOutputStream out: outs){
-                    out.writeUTF("Message from " + clientMessage);
-                    out.flush();
-                }
+                if (outs.size() > 0) {
+                    // отправляем сообщения другим клиентам
+                    for (DataOutputStream out : outs) {
+                        out.writeUTF("Message from " + clientMessage);
+                        out.flush();
+                    }
 
+                    for (DataOutputStream out : outs) {
+                        out.close();
+                    }
+                }
             }
 
             in.close();
-            for (DataOutputStream out : outs) {
-                out.close();
-            }
-
             client.close();
 
         } catch (IOException e) {

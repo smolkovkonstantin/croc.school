@@ -41,12 +41,14 @@ public class Client {
 
                     // проверяем что написали другие пользователи
                     if (ois.read() > -1) {
+                        System.out.println(ois);
                         String in = ois.readUTF();
                         System.out.println(in);
                     }
                 }
-            }
 
+
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

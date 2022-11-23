@@ -41,7 +41,7 @@ public class Server {
                 // выполнение обращения в отдельном потоке
                 execute.execute(new Controller(clientSocket, sockets));
             }
-            execute.shutdownNow();
+            execute.shutdown();
         } catch (IOException e) {
             e.printStackTrace();
         }
