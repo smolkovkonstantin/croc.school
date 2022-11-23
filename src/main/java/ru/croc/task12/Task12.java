@@ -19,7 +19,8 @@ public class Task12 {
                 "Morgenstern",
                 "string",
                 "this",
-                "th"
+                "th",
+                "sense"
         ));
 
         FilterBadWord blackListFilter = new FilterBadWord();

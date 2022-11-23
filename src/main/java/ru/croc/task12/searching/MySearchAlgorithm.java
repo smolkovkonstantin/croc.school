@@ -34,6 +34,11 @@ public class MySearchAlgorithm implements SearchAlgorithms {
                                 String.valueOf(string.charAt(matcher.end())).matches("\\W"))) {
                     return matcher.start();
                 }
+                else{
+                    if (matcher.end() == string.length()){
+                        return matcher.start();
+                    }
+                }
             }
         }
         return -1;

@@ -12,7 +12,7 @@ import java.util.concurrent.Future;
 
 public class FilterBadWord implements BlackListFilter {
 
-    final static int countThreads = 1;
+    final static int countThreads = 8;
     private final List<String> allFilteredString = new ArrayList<>();
 
     @Override
