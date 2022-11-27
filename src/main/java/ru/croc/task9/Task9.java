@@ -3,7 +3,7 @@ package ru.croc.task9;
 import ru.croc.task9.bruteforce.BruteForce;
 import ru.croc.task9.hash.CreateHash;
 import ru.croc.task9.hash.MD5;
-import ru.croc.task9.my.reader.MyReader;
+import ru.croc.reader.MyReader;
 
 public class Task9 {
     public static void main(String[] args) {
