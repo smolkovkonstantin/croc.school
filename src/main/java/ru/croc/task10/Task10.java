@@ -3,40 +3,29 @@ package ru.croc.task10;
 import ru.croc.task10.models.LotAtAuction;
 import ru.croc.task10.models.User;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class Task10 {
-    public static void main(String[] args) {
-        System.out.println("start");
+    public static void main(String[] args){
 
-        LocalDateTime endTime = LocalDateTime.now().plus(1, ChronoUnit.SECONDS);
+        LocalTime endTime = LocalTime.now().plus(10, ChronoUnit.SECONDS);
 
-        LotAtAuction lot = new LotAtAuction(10, endTime);
+        System.out.printf("start at %s finish at %s\n", LocalTime.now(), endTime);
 
-        List<User> users = new ArrayList<>();
-        int i = 0;
-        while(LocalDateTime.now().isBefore(endTime)) {
-            Random random = new Random();
-            users.add(null);
-            users.set(i, new User(
-                    Integer.toString(random.nextInt(1000000)), // name
-                    random.nextInt(2000), // bet
-                    LocalDateTime.now().plus(random.nextInt(5), ChronoUnit.SECONDS) // time of bet
-            ));
-            System.out.println(users.get(i));
+        int startBit = 10;
 
-            users.get(i).offerBird();
+        LotAtAuction lotAtAuction = new LotAtAuction(startBit, endTime);
 
-            lot.acceptBid(users.get(i));
+        lotAtAuction.waitingResults();
 
-            i += 1;
+        User[] users = new User[10];
+
+        for (int i = 0; i < users.length; i ++){
+
+            users[i] = new User(startBit, String.valueOf(i), lotAtAuction);
+            users[i].joinToAuction();
+
         }
-
-        System.out.println(lot.getWinner());
-        System.out.println(lot.getEndTime());
     }
 }
