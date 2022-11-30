@@ -2,10 +2,13 @@ package ru.croc.reader;
 
 import ru.croc.task13.cinema.Films;
 import ru.croc.task13.cinema.InformationUser;
+import ru.croc.task15.voting.Respondent;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MyReader {
@@ -53,6 +56,26 @@ public class MyReader {
         return informationUser;
     }
 
+    public static List<Respondent> readTask15(String path) {
 
+        List<Respondent> respondents = new ArrayList<>();
+
+        try (Reader reader = new FileReader(path)) {
+            Scanner scanner = new Scanner(reader);
+
+            String current;
+
+            while (!(current = scanner.nextLine()).equalsIgnoreCase("END")) {
+                String[] fullNameAndAge = current.split(",");
+
+                respondents.add(new Respondent(fullNameAndAge[0], Integer.parseInt(fullNameAndAge[1])));
+
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return respondents;
+    }
 
 }

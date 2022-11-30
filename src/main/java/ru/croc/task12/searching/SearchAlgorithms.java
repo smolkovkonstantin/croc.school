@@ -8,7 +8,7 @@ package ru.croc.task12.searching;
 
 public interface SearchAlgorithms {
     int find(String subString, String string);
-    default boolean alwaysFalse(String subString, String string){
+    default boolean subStringLongerString(String subString, String string){
         return subString.length() > string.length();
     }
 }

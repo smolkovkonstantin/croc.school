@@ -14,7 +14,7 @@ public class MySearchAlgorithm implements SearchAlgorithms {
     @Override
     public int find(String subString, String string) {
 
-        if (alwaysFalse(subString, string)) {
+        if (subStringLongerString(subString, string)) {
             return -1;
         }
 
