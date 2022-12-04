@@ -1,7 +1,8 @@
 package ru.croc.reader;
 
-import ru.croc.task13.cinema.Films;
-import ru.croc.task13.cinema.InformationUser;
+import ru.croc.task13.cinema.Movie;
+import ru.croc.task13.cinema.Poster;
+import ru.croc.task13.cinema.Visitor;
 import ru.croc.task15.voting.Respondent;
 
 import java.io.FileReader;
@@ -24,37 +25,49 @@ public class MyReader {
         }
     }
 
-    public static Films readTask13(String path) {
-
-        Films films = new Films();
-
-        try (Reader reader = new FileReader(path)) {
-            Scanner scanner = new Scanner(reader);
-
-            while (scanner.hasNext()) {
-                films.add(scanner.nextLine());
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return films;
-    }
-
-    public static InformationUser readTask13User(String path) {
-
-        InformationUser informationUser = new InformationUser();
+    public static List<Movie> readTask13(String path){
+        List<Movie> movies = new ArrayList<>();
 
         try (Reader reader = new FileReader(path)) {
             Scanner scanner = new Scanner(reader);
 
+            String current;
+
             while (scanner.hasNext()) {
-                informationUser.add(scanner.nextLine());
+                String[] numberAndName = scanner.nextLine().split(",");
+
+                movies.add(new Movie(numberAndName));
+
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return informationUser;
+
+        return movies;
     }
+
+    public static List<Visitor> readTask13(String path, Poster poster){
+        List<Visitor> visitors = new ArrayList<>();
+
+        try (Reader reader = new FileReader(path)) {
+            Scanner scanner = new Scanner(reader);
+
+            String current;
+
+            while (scanner.hasNext()) {
+                Visitor visitor = new Visitor(scanner.nextLine());
+                visitor.compileStatistics(poster);
+                visitors.add(visitor);
+
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return visitors;
+    }
+
+
 
     public static List<Respondent> readTask15(String path) {
 

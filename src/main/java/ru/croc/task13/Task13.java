@@ -2,11 +2,11 @@ package ru.croc.task13;
 
 
 import ru.croc.reader.MyReader;
-import ru.croc.task13.cinema.Films;
-import ru.croc.task13.cinema.InformationUser;
+import ru.croc.task13.cinema.Poster;
 import ru.croc.task13.cinema.Recommendation;
-import ru.croc.task13.cinema.User;
+import ru.croc.task13.cinema.Visitor;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Task13 {
@@ -15,15 +15,16 @@ public class Task13 {
     final static String CLIENT_HISTORY = ".\\src\\main\\java\\ru\\croc\\task13\\client history.txt";
 
     public static void main(String[] args) {
-        Films films = MyReader.readTask13(POSTER);
+        Poster poster = new Poster(MyReader.readTask13(POSTER));
 
-        InformationUser users = MyReader.readTask13User(CLIENT_HISTORY);
+        List<Visitor> statistics = MyReader.readTask13(CLIENT_HISTORY, poster);
 
         Scanner scanner = new Scanner(System.in);
 
-        User user = new User(scanner.nextLine());
+        Visitor visitor = new Visitor(scanner.nextLine());
+        visitor.compileStatistics(poster);
 
-        System.out.println(Recommendation.get(user, users, films));
+        System.out.println(Recommendation.get(statistics, visitor));
 
     }
 }
