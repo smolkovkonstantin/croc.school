@@ -1,12 +1,14 @@
 package ru.croc.task3.items;
 
+import ru.croc.task16.drivemobile.SelectionCar;
+
 import java.util.Objects;
 
-public class Point {
+public class Point implements Comparable<Point> {
     private double x;
     private double y;
 
-    public Point(double x, double y){
+    public Point(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -43,5 +45,16 @@ public class Point {
     @Override
     public String toString() {
         return String.format("(%s, %s)", x, y);
+    }
+
+    @Override
+    public int compareTo(Point o) {
+        if (o.getX() == x && y == o.getY()) {
+            return 0;
+        }
+
+        double r = Math.sqrt(Math.pow(o.getX() - x, 2) + Math.pow(o.getY() - y, 2));
+
+        return Math.toIntExact(Math.round(r * SelectionCar.accuracyOfApproximation));
     }
 }

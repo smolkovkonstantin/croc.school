@@ -9,8 +9,6 @@ public class Group {
     private int maxAge = -1;
     private final List<Respondent> respondents = new ArrayList<>();
 
-    private boolean empty = true;
-
     public Group(int minAge, int maxAge) {
         this.minAge = minAge;
         this.maxAge = maxAge;
@@ -19,12 +17,10 @@ public class Group {
     public void addRespondent(Respondent respondent) {
         if (minAge <= respondent.getAge() && respondent.getAge() <= maxAge) {
             respondents.add(respondent);
-            empty = false;
         }
 
         if (maxAge == -1 && respondent.getAge() >= minAge){
             respondents.add(respondent);
-            empty = false;
         }
     }
 
@@ -43,6 +39,6 @@ public class Group {
     }
 
     public boolean isEmpty() {
-        return empty;
+        return respondents.isEmpty();
     }
 }

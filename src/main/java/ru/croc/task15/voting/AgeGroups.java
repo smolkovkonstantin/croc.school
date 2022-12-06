@@ -8,28 +8,27 @@ public class AgeGroups {
     final List<Group> groups = new ArrayList<>();
 
     public AgeGroups(String[] ages) {
-        for (int i = ages.length - 1; i >= 0; i--) {
-            if (i == 0) {
-                groups.add(new Group(
-                        0,
-                        Integer.parseInt(ages[i]))
-                );
-            } else if (i == ages.length - 1) {
-                groups.add(new Group(
-                        Integer.parseInt(ages[i]) + 1)
-                );
-            } else if (i == ages.length - 2) {
-                groups.add(new Group(
-                        Integer.parseInt(ages[i]) + 1,
-                        Integer.parseInt(ages[i + 1])
-                ));
-            } else {
-                groups.add(new Group(
-                        Integer.parseInt(ages[i - 1]) + 1,
-                        Integer.parseInt(ages[i])
-                ));
-            }
+
+        groups.add(new Group(
+                Integer.parseInt(ages[ages.length - 1]) + 1)
+        );
+
+        groups.add(new Group(
+                Integer.parseInt(ages[ages.length - 2]) + 1,
+                Integer.parseInt(ages[ages.length - 1])
+        ));
+
+        for (int i = ages.length - 3; i >= 1; i--) {
+            groups.add(new Group(
+                    Integer.parseInt(ages[i - 1]) + 1,
+                    Integer.parseInt(ages[i])
+            ));
         }
+
+        groups.add(new Group(
+                0,
+                Integer.parseInt(ages[0]))
+        );
     }
 
     public void distribution(List<Respondent> allRespondent) {
