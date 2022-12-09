@@ -25,7 +25,7 @@ public class Group {
     }
 
     public void sortGroup(){
-        respondents.sort(new Respondent("", -1));
+        respondents.sort(Respondent::compareTo);
     }
 
     public Group(int minAge) {

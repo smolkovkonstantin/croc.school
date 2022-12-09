@@ -13,12 +13,7 @@ public class AgeGroups {
                 Integer.parseInt(ages[ages.length - 1]) + 1)
         );
 
-        groups.add(new Group(
-                Integer.parseInt(ages[ages.length - 2]) + 1,
-                Integer.parseInt(ages[ages.length - 1])
-        ));
-
-        for (int i = ages.length - 3; i >= 1; i--) {
+        for (int i = ages.length - 1; i >= 1; i--) {
             groups.add(new Group(
                     Integer.parseInt(ages[i - 1]) + 1,
                     Integer.parseInt(ages[i])

@@ -2,7 +2,7 @@ package ru.croc.task15.voting;
 
 import java.util.Comparator;
 
-public class Respondent implements Comparator<Respondent> {
+public class Respondent implements Comparator<Respondent>, Comparable<Respondent> {
 
     private final String fullName;
     private final int age;
@@ -27,7 +27,12 @@ public class Respondent implements Comparator<Respondent> {
         if (o1.age == o2.age) {
             return o1.fullName.compareTo(o2.fullName);
         } else {
-            return -1 * Integer.compare(o1.age, o2.age);
+            return -Integer.compare(o1.age, o2.age);
         }
+    }
+
+    @Override
+    public int compareTo(Respondent o) {
+        return compare(this, o);
     }
 }
