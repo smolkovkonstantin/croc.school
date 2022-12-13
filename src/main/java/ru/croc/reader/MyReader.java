@@ -4,6 +4,7 @@ import ru.croc.task13.cinema.Movie;
 import ru.croc.task13.cinema.Poster;
 import ru.croc.task13.cinema.Visitor;
 import ru.croc.task15.voting.Respondent;
+import ru.croc.task17.db.Order;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -25,13 +26,11 @@ public class MyReader {
         }
     }
 
-    public static List<Movie> readTask13(String path){
+    public static List<Movie> readTask13(String path) {
         List<Movie> movies = new ArrayList<>();
 
         try (Reader reader = new FileReader(path)) {
             Scanner scanner = new Scanner(reader);
-
-            String current;
 
             while (scanner.hasNext()) {
                 String[] numberAndName = scanner.nextLine().split(",");
@@ -46,13 +45,11 @@ public class MyReader {
         return movies;
     }
 
-    public static List<Visitor> readTask13(String path, Poster poster){
+    public static List<Visitor> readTask13(String path, Poster poster) {
         List<Visitor> visitors = new ArrayList<>();
 
         try (Reader reader = new FileReader(path)) {
             Scanner scanner = new Scanner(reader);
-
-            String current;
 
             while (scanner.hasNext()) {
                 Visitor visitor = new Visitor(scanner.nextLine());
@@ -66,7 +63,6 @@ public class MyReader {
 
         return visitors;
     }
-
 
 
     public static List<Respondent> readTask15(String path) {
@@ -89,6 +85,42 @@ public class MyReader {
         }
 
         return respondents;
+    }
+
+
+    public static List<Order> readTask17() {
+        String defaultPath = ".\\src\\main\\java\\ru\\croc\\task17\\test.txt";
+
+        List<Order> orders = new ArrayList<>();
+
+        try (Reader reader = new FileReader(defaultPath)) {
+            Scanner scanner = new Scanner(reader);
+
+            String current;
+
+            while (scanner.hasNextLine()) {
+
+                current = scanner.nextLine();
+
+                String[] stringOrder = current.split(",");
+
+                orders.add(new Order(
+                        stringOrder[0],
+                        stringOrder[1],
+                        stringOrder[2],
+                        stringOrder[3],
+                        stringOrder[4]
+                        )
+                );
+
+
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return orders;
+
     }
 
 }
