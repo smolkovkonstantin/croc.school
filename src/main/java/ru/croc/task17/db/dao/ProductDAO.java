@@ -8,42 +8,6 @@ import java.util.List;
 
 public class ProductDAO {
 
-    /**
-     * Создаю новую таблицу product с внешним ключом order_id и сразу переношу данные из order_id
-     * Удаляю все даныне о продукте из order_store и создаю внетренний ключ product_id и конекчу таблицы
-     */
-
-//    public static void create() {
-//
-//        try (Connection conn = DriverManager.
-//                getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "")) {
-//
-//            final Statement statement = conn.createStatement();
-//
-//            statement.execute("CREATE TABLE IF NOT EXISTS product AS SELECT ARTICLE, PRODUCT_NAME, COST FROM order_store");
-//
-//            statement.execute("ALTER TABLE order_store DROP COLUMN ARTICLE");
-//            statement.execute("ALTER TABLE order_store DROP COLUMN PRODUCT_NAME");
-//            statement.execute("ALTER TABLE order_store DROP COLUMN COST");
-//
-//            statement.executeUpdate("ALTER TABLE order_store ADD product_id INTEGER AUTO_INCREMENT");
-//
-//            statement.executeUpdate("ALTER TABLE order_store ADD PRIMARY KEY (product_id)");
-//
-//            statement.executeUpdate("ALTER TABLE product ADD order_id INTEGER AUTO_INCREMENT");
-//
-//            statement.executeUpdate("ALTER TABLE product ADD PRIMARY KEY (order_id)");
-//
-//            statement.executeUpdate("ALTER TABLE order_store ADD FOREIGN KEY (product_id) REFERENCES product (order_id)");
-//
-//
-//            statement.close();
-//
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//    }
     public static Product findProduct(String productCode) {
 
         Product result = null;

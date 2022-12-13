@@ -16,7 +16,7 @@ public class OrderDAO {
                     "(" +
                     "id INTEGER , " +
                     "login_user VARCHAR(255), " +
-                    "article  VARCHAR(255) NOT NULL, " +
+                    "article  VARCHAR(255), " +
                     "product_name VARCHAR(255), " +
                     "cost INTEGER" +
                     ")");
