@@ -1,4 +1,6 @@
-package ru.croc.task17.db;
+package ru.croc.task17.db.dao;
+
+import ru.croc.task17.db.model.Order;
 
 import java.sql.*;
 
@@ -14,7 +16,7 @@ public class OrderDAO {
                     "(" +
                     "id INTEGER , " +
                     "login_user VARCHAR(255), " +
-                    "article  VARCHAR(255), " +
+                    "article  VARCHAR(255) NOT NULL, " +
                     "product_name VARCHAR(255), " +
                     "cost INTEGER" +
                     ")");
@@ -32,21 +34,8 @@ public class OrderDAO {
             final Statement statement = conn.createStatement();
 
             statement.executeUpdate(String.format("INSERT INTO order_store (%s)" +
-                    "VALUES (%s)", Order.getAtribute(), order)
+                    "VALUES (%s)", Order.getAttribute(), order)
             );
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static void drop(){
-        try (Connection conn = DriverManager.
-                getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "")) {
-
-            final Statement statement = conn.createStatement();
-
-            statement.executeUpdate("DROP TABLE IF EXISTS order_store");
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

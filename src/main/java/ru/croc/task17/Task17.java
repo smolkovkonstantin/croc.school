@@ -1,8 +1,8 @@
 package ru.croc.task17;
 
 import ru.croc.reader.MyReader;
-import ru.croc.task17.db.Order;
-import ru.croc.task17.db.OrderDAO;
+import ru.croc.task17.db.model.Order;
+import ru.croc.task17.db.dao.OrderDAO;
 
 import java.util.List;
 

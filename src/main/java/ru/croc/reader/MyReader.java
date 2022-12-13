@@ -4,7 +4,8 @@ import ru.croc.task13.cinema.Movie;
 import ru.croc.task13.cinema.Poster;
 import ru.croc.task13.cinema.Visitor;
 import ru.croc.task15.voting.Respondent;
-import ru.croc.task17.db.Order;
+import ru.croc.task17.db.model.Order;
+import ru.croc.task17.db.model.Product;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -105,11 +106,9 @@ public class MyReader {
                 String[] stringOrder = current.split(",");
 
                 orders.add(new Order(
-                        stringOrder[0],
-                        stringOrder[1],
-                        stringOrder[2],
-                        stringOrder[3],
-                        stringOrder[4]
+                                stringOrder[0],
+                                stringOrder[1],
+                                new Product(stringOrder[2], stringOrder[3], stringOrder[4])
                         )
                 );
 
