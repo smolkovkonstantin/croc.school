@@ -4,8 +4,6 @@ import ru.croc.task13.cinema.Movie;
 import ru.croc.task13.cinema.Poster;
 import ru.croc.task13.cinema.Visitor;
 import ru.croc.task15.voting.Respondent;
-import ru.croc.task17.db.model.Order;
-import ru.croc.task17.db.model.Product;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -89,12 +87,11 @@ public class MyReader {
     }
 
 
-    public static List<Order> readTask17() {
-        String defaultPath = ".\\src\\main\\java\\ru\\croc\\task17\\test.txt";
+    public static List<String[]> readTask17(String arg) {
 
-        List<Order> orders = new ArrayList<>();
+        List<String[]> result = new ArrayList<>();
 
-        try (Reader reader = new FileReader(defaultPath)) {
+        try (Reader reader = new FileReader(arg)) {
             Scanner scanner = new Scanner(reader);
 
             String current;
@@ -103,22 +100,16 @@ public class MyReader {
 
                 current = scanner.nextLine();
 
-                String[] stringOrder = current.split(",");
+                String[] stringOrderAndProduct = current.split(",");
 
-                orders.add(new Order(
-                                stringOrder[0],
-                                stringOrder[1],
-                                new Product(stringOrder[2], stringOrder[3], stringOrder[4])
-                        )
-                );
-
+                result.add(stringOrderAndProduct);
 
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        return orders;
+        return result;
 
     }
 

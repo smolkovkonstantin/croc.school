@@ -1,18 +1,20 @@
 package ru.croc.task17;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import ru.croc.reader.MyReader;
-import ru.croc.task17.db.model.Order;
-import ru.croc.task17.db.dao.OrderDAO;
+import ru.croc.task17.service.MainService;
 
-import java.util.List;
-
+@SpringBootApplication
 public class Task17 {
+
     public static void main(String[] args) {
-        List<Order> orderList = MyReader.readTask17();
+        ConfigurableApplicationContext context = SpringApplication.run(Task17.class);
 
-        OrderDAO.create();
+        MainService mainService = context.getBean(MainService.class);
 
-        orderList.forEach(OrderDAO::addOrder);
+        MyReader.readTask17(args[0]).forEach(mainService::registerOrderAndProduct);
 
     }
 }
