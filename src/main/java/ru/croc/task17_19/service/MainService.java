@@ -1,12 +1,18 @@
-package ru.croc.task17.service;
+package ru.croc.task17_19.service;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Service;
-import ru.croc.task17.dao.OrderDAO;
-import ru.croc.task17.dao.ProductDAO;
-import ru.croc.task17.model.Order;
-import ru.croc.task17.model.Product;
+import ru.croc.task17_19.dao.OrderDAO;
+import ru.croc.task17_19.dao.ProductDAO;
+import ru.croc.task17_19.model.Order;
+import ru.croc.task17_19.model.Product;
+
+import java.util.Arrays;
 
 @Service
+@Getter
+@Setter
 public class MainService {
 
     private final OrderDAO orderDAO;
@@ -24,15 +30,15 @@ public class MainService {
                 .customerName(stringOrder[1])
                 .build();
 
-        orderDAO.save(order);
-
+        System.out.println(Arrays.toString(stringOrder));
         Product product = Product.builder()
-                .idProduct(stringOrder[2])
                 .nameProduct(stringOrder[3])
-                .price(Integer.parseInt(stringOrder[4]))
                 .order(order)
+                .price(Integer.parseInt(stringOrder[4]))
+                .productCode(stringOrder[2])
                 .build();
 
+        orderDAO.save(order);
         productDAO.save(product);
     }
 }

@@ -1,4 +1,4 @@
-package ru.croc.task17.model;
+package ru.croc.task17_19.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,6 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "my_order")
@@ -21,5 +22,6 @@ public class Order {
     private String customerName;
 
     @OneToMany(mappedBy = "order")
+    @ToString.Exclude
     private List<Product> products;
 }
